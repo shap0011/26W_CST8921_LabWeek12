@@ -22,6 +22,8 @@
 - OpenAI key: `[OpenAIKey](/keys.txt)`
 - Storage account name: `stsearchlabfilesshap0011`
 
+---
+
 ### Step 2 - Deploy the embedding and chat models
 
 - Embedding deployment: `text-embedding-3-small`
@@ -32,7 +34,9 @@ AZURE_OPENAI_API_KEY=your-key-here
 EMBEDDING_MODEL_DEPLOYMENT=text-embedding-3-small
 CHAT_MODEL_DEPLOYMENT=gpt-4o
 
-### Step 3 (Part 1): Upload HR files to Blob Storage
+---
+
+### Step 3: Upload HR files to Blob Storage
 
 Storage account: `stsearchlabfilesshap0011`
 Container: `documents`
@@ -43,24 +47,40 @@ Upload all 3 files from the local repo:
 `remote-work-policy.txt`
 `benefits-overview.txt`
 
-### Step 3 (Part 2): Connect Blob Storage to Azure AI Search
+---
 
-![Indexed HR documents](./screenshots/1-indexed-hr-documents.png)
+### Step 4: Connect Blob Storage to Azure AI Search
 
-Figure 1: Indexed HR documents
+![Azure AI Search index successfully populated with HR documents](./screenshots/1-indexed-hr-documents.png)
 
-![Successful indexer execution](./screenshots/2-successful-indexer-execution.png)
+Figure 1: Azure AI Search index successfully populated with HR documents
 
-Figure 2: Successful indexer execution
+![Successful execution of the indexer pipeline](./screenshots/2-successful-indexer-execution.png)
 
-![Keyword search results](./screenshots/3-keyword-search-baseline.png)
+Figure 2: Successful execution of the indexer pipeline
 
-Figure 3: Keyword search results
+![Keyword-based search results for the query "vacation"](./screenshots/3-keyword-search-baseline.png)
 
-![Semantic search AI understanding](./screenshots/4-semantic-search-ai-understanding.png)
+Figure 3: Keyword-based search results for the query "vacation"
 
-Figure 4: Semantic search AI understanding
+![Semantic search with extractive answer for a natural language query](./screenshots/4-semantic-search-ai-understanding.png)
 
-![Hybrid keyword semantic vector](./screenshots/5-hybrid-keyword-semantic-vector.png)
+Figure 4: Semantic search with extractive answer for a natural language query
 
-Figure 5: Hybrid keyword semantic vector
+![Hybrid search combining keyword, vector, and semantic ranking](./screenshots/5-hybrid-keyword-semantic-vector.png)
+
+Figure 5: Hybrid search combining keyword, vector, and semantic ranking
+
+![Semantic search result answering a natural language question about the remote work policy](./screenshots/6-work-from-home-policy.png)
+
+Figure 6: Semantic search result answering a natural language question about the remote work policy
+
+---
+
+### Analysis: Keyword vs Semantic vs Hybrid Search
+
+Keyword search returns results based on exact word matching and provides raw document content. Users must manually interpret the results to find relevant information.
+
+Semantic search improves upon keyword search by understanding the intent behind a query. It can return extractive answers directly from the documents, making it easier to retrieve precise information using natural language questions.
+
+Hybrid search combines keyword matching, vector embeddings, and semantic ranking to provide the most relevant and context-aware results. This approach improves both recall and precision, making it the most effective method for information retrieval in this lab.
