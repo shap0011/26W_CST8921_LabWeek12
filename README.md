@@ -42,3 +42,25 @@ Upload all 3 files from the local repo:
 `vacation-policy.txt`
 `remote-work-policy.txt`
 `benefits-overview.txt`
+
+### Step 3 (Part 2): Connect Blob Storage to Azure AI Search
+
+![Indexed HR documents](./screenshots/1-indexed-hr-documents.png)
+
+Figure 1: Indexed HR documents
+
+![Successful indexer execution](./screenshots/2-successful-indexer-execution.png)
+
+Figure 2: Successful indexer execution
+
+![Keyword search results](./screenshots/3-keyword-search-baseline.png)
+
+Figure 3: Keyword search results
+
+![Semantic search AI understanding](./screenshots/4-semantic-search-ai-understanding.png)
+
+Figure 4: Semantic search AI understanding
+
+![Hybrid keyword semantic vector](./screenshots/5-hybrid-keyword-semantic-vector.png)
+
+Figure 5: Hybrid keyword semantic vector
