@@ -8,6 +8,24 @@
 
 ---
 
+### Introduction
+
+This lab demonstrates how to build a Retrieval-Augmented Generation (RAG) solution using Azure AI Search and Azure OpenAI. The system ingests HR policy documents, generates vector embeddings, and enables both keyword and AI-powered semantic search.
+
+---
+
+## Architecture Overview
+
+The solution consists of:
+
+- **Azure Blob Storage** → stores HR documents
+- **Azure AI Search** → indexes and retrieves data
+- **Azure OpenAI** → generates embeddings and AI responses
+
+This pipeline enables intelligent search and question answering over unstructured data.
+
+---
+
 ### Step 1 - Create the Azure resources
 
 - Resource Group: `rg-ai-search-lab`, `Canada Central`
@@ -15,41 +33,46 @@
 - Azure OpenAI resource: `aoai-rag-lab-shap0011`
 - Storage Account: `stsearchlabfilesshap0011`, blob container `documents`
 
+#### Configuration Details
+
 - Search service name: `srch-rag-lab-shap0011`
 - Search endpoint: `https://srch-rag-lab-shap0011.search.windows.net`
-- Search admin key: `[SearchAdminKey](/keys.txt)`
+- Search admin key: stored securely in `/keys.txt`
 - OpenAI endpoint: `https://aoai-rag-lab-shap0011.openai.azure.com/`
-- OpenAI key: `[OpenAIKey](/keys.txt)`
-- Storage account name: `stsearchlabfilesshap0011`
+- OpenAI key: stored securely in `/keys.txt`
 
 ---
 
-### Step 2 - Deploy the embedding and chat models
+### Step 2 - Deploy Models
 
 - Embedding deployment: `text-embedding-3-small`
 - Chat deployment: `gpt-4o`
 
+```
 AZURE_OPENAI_ENDPOINT=https://aoai-rag-lab-shap0011.openai.azure.com/
 AZURE_OPENAI_API_KEY=your-key-here
 EMBEDDING_MODEL_DEPLOYMENT=text-embedding-3-small
 CHAT_MODEL_DEPLOYMENT=gpt-4o
+```
 
 ---
 
-### Step 3: Upload HR files to Blob Storage
+### Step 3: Upload HR Documents
 
 Storage account: `stsearchlabfilesshap0011`
 Container: `documents`
 
-Upload all 3 files from the local repo:
+Uploaded files:
 
-`vacation-policy.txt`
-`remote-work-policy.txt`
-`benefits-overview.txt`
+- `vacation-policy.txt`
+- `remote-work-policy.txt`
+- `benefits-overview.txt`
 
 ---
 
 ### Step 4: Connect Blob Storage to Azure AI Search
+
+#### Results
 
 ![Azure AI Search index successfully populated with HR documents](./screenshots/1-indexed-hr-documents.png)
 
@@ -79,8 +102,16 @@ Figure 6: Semantic search result answering a natural language question about the
 
 ### Analysis: Keyword vs Semantic vs Hybrid Search
 
-Keyword search returns results based on exact word matching and provides raw document content. Users must manually interpret the results to find relevant information.
+**Keyword search** retrieves results based on exact term matching. While effective for simple queries, it returns raw document content and requires manual interpretation.
 
-Semantic search improves upon keyword search by understanding the intent behind a query. It can return extractive answers directly from the documents, making it easier to retrieve precise information using natural language questions.
+**Semantic search** improves retrieval by understanding the intent of natural language queries. It provides extractive answers directly from the documents, improving usability and accuracy.
 
-Hybrid search combines keyword matching, vector embeddings, and semantic ranking to provide the most relevant and context-aware results. This approach improves both recall and precision, making it the most effective method for information retrieval in this lab.
+**Hybrid search** combines keyword matching, vector embeddings, and semantic ranking. This approach delivers the most relevant and context-aware results, making it the most effective method for information retrieval in this solution.
+
+---
+
+### Conclusion
+
+This lab successfully demonstrated how to build a RAG-based search solution using Azure services. By integrating Azure AI Search with Azure OpenAI, it is possible to transform static documents into an intelligent system capable of answering user questions with high accuracy and relevance.
+
+---
